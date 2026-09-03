@@ -159,3 +159,9 @@ python -m unittest discover tests
 - [`matlab_legacy_code/`](matlab_legacy_code/) - Original legacy MATLAB source scripts (`.m`) preserved for reference
 - [`run_simulation.py`](run_simulation.py:1) - CLI script to execute simulations
 - [`tests/`](tests/test_simulation.py:1) - Unit tests
+
+---
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 - see the [`LICENSE`](LICENSE:1) file for details.
