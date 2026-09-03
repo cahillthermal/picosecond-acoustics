@@ -1,0 +1,8 @@
+2.2           density
+60.0          sound velocity
+1.45   0.0    pump n and kappa .007
+1.45   0.0    probe n and kappa .007
+-0.86  0.69  probe d_n/d_strain  d_kappa/d_strain  
+0.1            expansion coefficient 
+0.0           diffusivity parameter
+0.001         attenuation coefficient in psecs

@@ -1,0 +1,8 @@
+19.3        density
+39.0       sound velocity
+3.65  2.769    pump n and kappa (2.8,8.45; 2/65 8/54)
+3.65  2.769    probe n and kappa 
+-3.0  0     probe d_n/d_strain  d_kappa/d_strain
+4.5         expansion coefficient
+400         diffusion length 
+0.01        attenuation coefficient 

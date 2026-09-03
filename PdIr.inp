@@ -1,0 +1,11 @@
+24.405           density
+49.6           sound velocity
+2.65  8.54     pump n and kappa (2.8,8.45)
+2.65  8.54     probe n and kappa 
+-7.0  0     (-7.0)probe d_n/d_strain  d_kappa/d_strain
+22.0        (22.0)    expansion coefficient
+0           diffusion length
+0.005           attenuation coefficient
+
+
+parameters for Palladium

@@ -1,0 +1,11 @@
+5.12           density (1.6)
+79           sound velocity (18)
+2.6  0.0     pump n and kappa (2.8,8.45)
+2.6  0.0     probe n and kappa 
+0.0  0.0     probe d_n/d_strain  d_kappa/d_strain
+22.0        (22.0)    expansion coefficient
+150.0          diffusion length (150)
+0.010           attenuation coefficient
+
+
+parameters for aluminum 
