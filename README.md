@@ -37,18 +37,22 @@ pip install numpy matplotlib
 Run a simulation using an existing `.inp` file (e.g., [`r_t_6.inp`](r_t_6.inp:1)):
 
 ```bash
-# Display plot window before exiting:
-python run_simulation.py r_t_6.inp --plot
+# Run with defaults (loads r_t_6.inp, saves r_t_py.dat, saves simulation_result.png, and displays plot):
+python run_simulation.py
 
-# Save output data and plot image:
-python run_simulation.py r_t_6.inp --output r_t_py.dat --plot --save-plot plot.png
+# Custom input file and output file:
+python run_simulation.py r_t_6.inp --output r_t_py.dat --save-plot plot.png
+
+# Run headless without displaying plot window:
+python run_simulation.py r_t_6.inp --no-plot
 ```
 
 #### CLI Command Options for [`run_simulation.py`](run_simulation.py:1):
-- `inp_file`: Path to legacy input file (default: `r_t_6.inp`). If not found, runs custom Python demo simulation.
-- `--plot`, `-p`: Display interactive plot of reflectivity change ($dR/R$) vs time (ps) before exiting.
-- `--save-plot <filename>`: Save plot image to file (e.g. `simulation_plot.png`).
+- `inp_file`: Path to legacy input file (default: `r_t_6.inp`).
 - `--output <filename>`, `-o <filename>`: Path to save numerical simulation result data text file (default: `r_t_py.dat`).
+- `--save-plot <filename>`: Path to save plot image file (default: `simulation_result.png`).
+- `--no-save-plot`: Disable saving the plot image to file.
+- `--no-plot`: Disable displaying the interactive plot window.
 
 ---
 

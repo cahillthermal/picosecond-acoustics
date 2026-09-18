@@ -1,10 +1,11 @@
 0.2      time step in data 
 1.0      ratio of data time step to simulation time step
 100.0     time between saving strain distribution 
-700.0    time to stop simulation 
+200.0    time to stop simulation 
 7850.0   0.0   1   wavelength of pump, angle of pump, polarization of pump
 7850.0   0.0   2    wavelength of probe, angle of probe, polarization of probe
-2        number of films
+3        number of films
 1        number of configurations
-760.0  0.0   Al.inp
-7000 0.0  Si.inp
+1000.0  0.0   Al.inp
+20.0 0.0 SiO2.inp
+10000.0 0.0 Al.inp

@@ -55,22 +55,39 @@ def load_simulation_from_legacy_inp(
         polarization=int(probe_vals[2])
     )
 
-    num_films = int(re.findall(r"[-+]?(?:\d*\.\d+|\d+)(?:[eE][-+]?\d+)?", lines[6])[0])
+    num_films_spec = int(re.findall(r"[-+]?(?:\d*\.\d+|\d+)(?:[eE][-+]?\d+)?", lines[6])[0])
     n_samples = int(re.findall(r"[-+]?(?:\d*\.\d+|\d+)(?:[eE][-+]?\d+)?", lines[7])[0])
 
-    structure = Structure()
-    for line_idx in range(8, 8 + num_films):
-        line = lines[line_idx]
+    # Parse film lines starting at line index 8
+    film_lines = lines[8:]
+    parsed_film_entries = []
+    for line in film_lines:
         nums, mat_filename = parse_numbers_and_text(line)
-        thickness = nums[0]
-        roughness = nums[1] if len(nums) > 1 else 0.0
-
         if not mat_filename:
-            # Fallback search for .inp filename in line text
             for token in line.split():
                 if token.lower().endswith(".inp"):
                     mat_filename = token
                     break
+        if nums and mat_filename:
+            parsed_film_entries.append((nums, mat_filename))
+
+    # Fallback to range(8, 8 + num_films_spec) if no pattern matched
+    if not parsed_film_entries:
+        for line_idx in range(8, min(len(lines), 8 + num_films_spec)):
+            line = lines[line_idx]
+            nums, mat_filename = parse_numbers_and_text(line)
+            if not mat_filename:
+                for token in line.split():
+                    if token.lower().endswith(".inp"):
+                        mat_filename = token
+                        break
+            if nums:
+                parsed_film_entries.append((nums, mat_filename))
+
+    structure = Structure()
+    for nums, mat_filename in parsed_film_entries:
+        thickness = nums[0]
+        roughness = nums[1] if len(nums) > 1 else 0.0
 
         mat_path = base_dir / mat_filename
         if not mat_path.exists():

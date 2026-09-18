@@ -55,8 +55,33 @@ class TestPicosecondAcoustics(unittest.TestCase):
     def test_legacy_inp_load(self):
         if Path("r_t_6.inp").exists():
             sim = load_simulation_from_legacy_inp("r_t_6.inp")
+            self.assertEqual(len(sim.structure.layers), 3)
             res = sim.run()
             self.assertGreater(len(res.time_ps), 0)
+
+    def test_multilayer_thickness_dependence(self):
+        al = Material.from_inp_file("Al.inp")
+        sio2 = Material.from_inp_file("SiO2.inp")
+
+        def run_with_sio2_thickness(thickness: float):
+            structure = Structure([
+                FilmLayer(al, 1000.0, 0.0),
+                FilmLayer(sio2, thickness, 0.0),
+                FilmLayer(al, 10000.0, 0.0)
+            ])
+            sim = PicosecondAcousticsSimulation(
+                structure=structure,
+                pump_beam=LightBeam(7850.0, 0.0, 1),
+                probe_beam=LightBeam(7850.0, 0.0, 2),
+                sim_config=SimulationConfig(0.2, 1, 150.0, 100.0, 1)
+            )
+            return sim.run()
+
+        res_500 = run_with_sio2_thickness(500.0)
+        res_1000 = run_with_sio2_thickness(1000.0)
+
+        # Reflectivity signals should not be identical because SiO2 thickness changed
+        self.assertFalse(np.allclose(res_500.reflectivity_change, res_1000.reflectivity_change))
 
 
 if __name__ == "__main__":
